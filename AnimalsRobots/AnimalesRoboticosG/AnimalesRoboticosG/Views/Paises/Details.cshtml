@@ -1,0 +1,29 @@
+﻿@model Conexiones.Animales.Models.Paises
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-black-50 bg-light">Detalles del País</div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right"><strong>Nombre</strong></label>
+                        @Html.DisplayFor(model => model.nombre)
+                    </div>
+                </div>
+                <div class="col-md-6 offset-md-4">
+                    <button type="button" class="btn btn-warning btn-sm">
+                        <i class="fa fa-edit"></i>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.id })
+                    </button>
+                </div>
+                @Html.ActionLink("Volver", "Index")
+
+            </div>
+        </div>
+    </div>
+</div>

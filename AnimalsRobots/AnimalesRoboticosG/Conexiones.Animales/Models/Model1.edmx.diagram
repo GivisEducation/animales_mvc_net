@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1192952dc3224ff9b55fc12ff1992957" Name="Diagram1" ZoomLevel="91">
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Comunas" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.DetalleVentas" Width="1.5" PointX="11.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Direcciones" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Paises" Width="1.5" PointX="1.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Pedidos" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Regiones" Width="1.5" PointX="1.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Usuarios" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Comuna_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Direcciones_Comuna1" ManuallyRouted="false" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Direcciones_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Pedidos_Direcciones" ManuallyRouted="false" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Region_Pais" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.ImagenesProductos" Width="1.5" PointX="13.875" PointY="2" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Categorias" Width="1.5" PointX="9" PointY="2.125" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.DetallePedidos" Width="1.5" PointX="13.5" PointY="5.25" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Productos" Width="1.5" PointX="11.25" PointY="1.25" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Productos_Categorias" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_DetallePedidos_Pedidos" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_DetallePedidos_Productos" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_DetalleVentas_Productos" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_ImagenesProductos_Productos" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Perfiles" Width="1.5" PointX="0.75" PointY="11.125" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Usuarios_Perfiles" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.MetodoPagos" Width="1.5" PointX="3.375" PointY="1.375" />
+        <EntityTypeShape EntityType="ComercioRoboticoModel.Ventas" Width="1.5" PointX="5.625" PointY="3.75" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_DetallesVentas_Ventas" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Ventas_MetodoPagos" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Pedidos_Ventas" />
+        <AssociationConnector Association="ComercioRoboticoModel.FK_Ventas_Usuarios" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

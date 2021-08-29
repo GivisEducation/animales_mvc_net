@@ -1,0 +1,48 @@
+﻿@model Conexiones.Animales.Models.DetalleVentas
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-black-50 bg-light">Detalle de Venta</div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <strong>Cantidad:</strong>
+                        @Html.DisplayFor(model => model.cantidad)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <strong>SubTotal:</strong>
+                        @Html.DisplayFor(model => model.subTotal)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <strong>Descripción:</strong>
+                        @Html.DisplayFor(model => model.Ventas.descripcion)
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <strong>Productos:</strong>
+                        @Html.DisplayFor(model => model.Productos.nombre)
+                    </div>
+                </div>
+                <div class="col-md-6 offset-md-4">
+                    <button type="button" class="btn btn-warning btn-sm">
+                        <i class="fa fa-edit"></i>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.id })
+                    </button>
+                </div>
+
+                @Html.ActionLink("Volver", "Index")
+            </div>
+        </div>
+    </div>
+</div>

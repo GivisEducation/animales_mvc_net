@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Pagar";
+}
+
+<div class="d-flex ml-5 mr-5 justify-content-center">
+    <article class="card">
+        <div class="card-body p-5">
+            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                        <i class="fa fa-credit-card"></i> Tarjeta de Credito
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                        <i class="fa fa-paypal"></i>  Paypal
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                        <i class="fa fa-bank"></i>Transferencia
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="nav-tab-card">
+                    <p class="alert alert-success">Complete los campos para realizar compra</p>
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="username">Nombre completo (tarjeta)</label>
+                            <input type="text" class="form-control" name="username" placeholder="" required="">
+                        </div> <!-- form-group.// -->
+
+                        <div class="form-group">
+                            <label for="cardNumber">Numero de tarjeta</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="cardNumber" placeholder="">
+                                <div class="input-group-append">
+                                    <span class="input-group-text text-muted">
+                                        <i class="fa fa-cc-visa"></i>   <i class="fa fa-cc-amex"></i>
+                                        <i class="fa fa-cc-mastercard"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div> <!-- form-group.// -->
+
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label><span class="hidden-xs">Fecha expiración</span> </label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" placeholder="MM" name="">
+                                        <input type="number" class="form-control" placeholder="YY" name="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label data-toggle="tooltip" title="" data-original-title="3 digitos de la parte de atras de la tarjeta">CVV <i class="fa fa-question-circle"></i></label>
+                                    <input type="number" class="form-control" required="">
+                                </div> <!-- form-group.// -->
+                            </div>
+                        </div> <!-- row.// -->
+                        <button class="btn btn-primary btn-block" type="button"> Confirmar</button>
+                        <br />
+                        <!-- Botón de pagar -->
+                        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#success_tic" href="/Carrito/Pagar">Comprar</button>
+
+                        <!-- Modal -->
+                        <div id="success_tic" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <a class="close" data-dismiss="modal">&times;</a>
+                                    <div class="page-body">
+                                        <div class="head">
+                                            <h3 style="margin-top:5px;">Compra Exitosa</h3>
+                                            <h4>Gracias por preferirnos</h4>
+                                        </div>
+
+                                        <h1 style="text-align:center;">  </h1>
+                                        <div class="checkmark-circle">
+                                            <div class="background"></div>
+                                            <div class="checkmark draw"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Fin Modal-->
+                    </form>
+                </div> <!-- tab-pane.// -->
+                <div class="tab-pane fade" id="nav-tab-paypal">
+                    <p>Paypal es el medio de pago más fácil para pagar online</p>
+                    <p>
+                        <button type="button" class="btn btn-primary"> <i class="fa fa-paypal"></i> Ingresar con Paypal </button>
+                    </p>
+                    <p>
+                        <strong>Nota:</strong> Verifique los datos de su cuenta antes de realizar el pago.No existirán devoluciones o reembolsos.
+                    </p>
+                    <!-- Botón de pagar -->
+                    @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" href="/Carrito/Pagar" data-target="#success_tic">Pagar con Paypal</button>*@
+                </div>
+                <div class="tab-pane fade" id="nav-tab-bank">
+                    <p>Detalles de la cuenta</p>
+                    <dl class="param">
+                        <dt>BANCO: </dt>
+                        <dd> Falabellax</dd>
+                    </dl>
+                    <dl class="param">
+                        <dt>Numero de cuenta: </dt>
+                        <dd> 12345678912345</dd>
+                    </dl>
+                    <dl class="param">
+                        <dt>IBAN: </dt>
+                        <dd> 123456789</dd>
+                    </dl>
+                    <!-- Botón de pagar -->
+                    <button type="button" class="btn btn-info btn-success" data-toggle="modal" href="/Carrito/Pagar" data-target="#success_tic">Transferir</button>
+                    
+                </div> <!-- tab-pane.// -->
+            </div> <!-- tab-content .// -->
+        </div> <!-- card-body.// -->
+    </article> <!-- card.// -->
+    </div>

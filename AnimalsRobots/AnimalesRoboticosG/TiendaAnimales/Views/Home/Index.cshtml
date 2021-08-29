@@ -1,0 +1,221 @@
+﻿@model List<Conexiones.Animales.Models.Productos>
+@{
+    ViewBag.Title = "Inicio";
+}
+<script>
+    ObtenerCarrito();
+
+    function AgregarCarrito(id) {
+        console.log(id);
+        var formData = new FormData();
+        formData.append("id", id);
+        formData.append("cantidad", 1);
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                var json = JSON.parse(xhr.responseText);
+                ObtenerCarrito(json);
+            }
+        }
+        xhr.open("post", "/Carrito/Agregar");
+        xhr.send(formData);
+    }
+
+    function ObtenerCarrito() {
+        var xhr = new XMLHttpRequest();//ajax
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                var json = JSON.parse(xhr.responseText);
+                DibujarCarrito(json);
+            }
+        }
+        xhr.open("get", "/Carrito/Traer");
+        xhr.send();
+    }
+
+    function DibujarCarrito(json) {
+
+        var cCarrito = document.getElementById("contenedorCarrito");
+        var html = "<table class='table table-hover'>"
+        html += "<thead>"
+        html += "<tr>"
+        html += " <th>Nombre</th>"
+        html += "<th>Precio</th>"
+        html += "<th>Cantidad</th>"
+        html += "<th>Subtotal</th>"
+        html += "<th>Quitar</th>"
+        html += "</tr >"
+        html += "</thead >"
+        for (var i = 0; i < json.Traer.length; i++) {
+            html += "<tr>"
+            html += "<td>" + json.Traer[i].nombre + "</td>"
+            html += "<td>$" + json.Traer[i].precio + "</td>"
+            html += "<td><input onblur='EditarCarrito(" + json.Traer[i].id + ",this)' class='form-control' type='number' min='0' max='5000' value='" + json.Traer[i].Cantidad + "'/></td>"
+            html += "<td>$" + json.Traer[i].SubTotal + "</td>";
+            html += "<td><a onclick='EliminarCarrito(" + json.Traer[i].id + ")' href='#'><i class='fa fa-times'></i></a></td>"
+            html += "</tr>"
+        }
+        html += "</tbody>"
+        html += "<tfooter>"
+        html += "<tr>"
+        html += "<td>Número de productos=" + json.Contar + "</td>"
+        html += "<th ><em>TOTAL=<span>$" + json.Totalizar + "</span></th>"
+        html += "<tr>"
+        html += "</tfooter>"
+        html += "</table>"
+        html += "</div >"
+        cCarrito.innerHTML = html;
+    }
+
+
+    function EliminarCarrito(id) {
+
+        var xhr = new XMLHttpRequest();//ajax
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                ObtenerCarrito();
+            }
+        }
+
+        xhr.open("get", "/Carrito/Eliminar?id=" + id);
+        xhr.send();
+
+    }
+
+    function EditarCarrito(id, elemento) {
+        var xhr = new XMLHttpRequest();//ajax
+        var formData = new FormData();
+        formData.append("id", id);
+        formData.append("Cantidad", elemento.value);
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                ObtenerCarrito();
+            }
+        }
+        xhr.open("post", "/Carrito/Editar");
+        xhr.send(formData);
+    }
+
+</script>
+
+<br />
+
+<section id="Catalogo">
+    @{
+        foreach (var pro in Model)
+        {
+            <div class="container">
+                <div class="product-grid6">
+                    <div class="product-image6">
+                        @{
+                            if (pro.ImagenesProductos.Count == 0)
+                            {
+                                <div class="product-image6">
+                                    <a href="#">
+                                        <img class="" src="/Content/ImgEmpresa/notFound.png" />
+                                    </a>
+                                </div>
+                            }
+                        }
+                        @for (int x = 0; x < pro.ImagenesProductos.Count; x++)
+                        {
+                            if (x == 0)
+                            {
+                                <div class="product-image6">
+                                    <a href="#">
+                                        <img src="https://localhost:44363/@pro.ImagenesProductos.ElementAt(x).url" />
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="product-image6">
+                                    <a href="#">
+                                        <img src="https://localhost:44363/@pro.ImagenesProductos.ElementAt(x).url" />
+                                    </a>
+                                </div>
+                            }
+
+                        }
+                    </div>
+
+                    <div class="product-content">
+                        <h3 class="title">@pro.nombre</h3>
+                        <div class="price">
+                            $ @pro.precio
+                            <span>
+                                $@(pro.precio * 2)
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Agregar al carrito -->
+                    <i class="fa fa-shopping-basket" onclick="AgregarCarrito(@pro.id)" id="@pro.id " style="font-size: 32px; display: block; height: 30px"></i>
+                    <!-- Ver detalle del producto -->
+                    <i class="fa fa-search product-full-view" data-toggle="modal" data-target="#modal-@pro.id"></i>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-@pro.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Detalle de producto</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <strong>@pro.nombre</strong>
+                                    <div class="row-cols-1"> @pro.descripcion</div>
+
+                                    <div class="col-md-6">Color: @pro.color</div>
+
+                                    <div class="col-md-6">Tamaño: @pro.tamaño cm</div>
+
+                                    <div class="row-cols-2">
+                                        <span class="green-text">
+                                            <strong>Precio: $ @pro.precio</strong>
+                                        </span>
+                                    </div>
+                                    <!-- Agregar al carrito -->
+                                    <button type="button" class="btn btn-secondary" data-tip="Agregar" onclick="AgregarCarrito(@pro.id)" id="@pro.id"><i class="fa fa-cart-plus" style="height: 10px; color: lawngreen"></i> Agregar al carrito<br /></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button trigger modal -->
+                </div>
+            </div>
+        }
+    }
+</section>
+
+
+<br />
+<br />
+
+<div class="d-flex justify-content-center">
+    <div class="text-center">
+        <div class="pagination">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    @if (ViewBag.pagina > 1)
+                    {
+                        <li class="page-item"><a class="page-link" href="/Home/Index?pagina=@(ViewBag.pagina-1)"><i class="fa fa-arrow-left"></i></a></li>
+                    }
+                    @for (int i = 0; i < ViewBag.CantidadPaginas; i++)
+                    {
+                        <li class="page-item"><a class="page-link" href="/Home/Index?pagina=@(i+1)">@(i + 1)</a></li>
+                    }
+                    @if (ViewBag.pagina < ViewBag.CantidadPaginas)
+                    {
+                        <li class="page-item"><a class="page-link" href="/Home/Index?pagina=@(ViewBag.pagina+1)"><i class="fa fa-arrow-right"></i></a></li>
+                    }
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+

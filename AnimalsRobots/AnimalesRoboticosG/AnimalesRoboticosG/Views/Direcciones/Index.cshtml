@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Conexiones.Animales.Models.Direcciones>
+
+@{
+    ViewBag.Title = "Ubicación";
+}
+
+<div class="d-flex ml-5 mr-5">
+
+    <table class="table">
+        <thead class="thead-dark table-bordered">
+            <tr>
+                <th>
+                    <label>Dirección</label>
+                </th>
+                <th>
+                    <label>Código Postal</label>
+                </th>
+                <th>
+                    <label>Referencias</label>
+                </th>
+                <th>
+                    <label>Recibidor</label>
+                </th>
+                <th>
+                    <label>Número</label>
+                </th>
+                <th>
+                    <label>Departamento</label>
+                </th>
+                <th>
+                    <label>D. Principal</label>
+                </th>
+                <th>
+                    <label>Comuna</label>
+                </th>
+                <th>
+                    <label>Usuarios</label>
+                </th>
+                <th>
+                    <label>Opciones</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.codigoPostal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.referencias)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recibidor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.departamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.principal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comunas.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuarios.nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Ver", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot class="thead-dark">
+            <tr>
+                <th>
+                    <label>Direcciones</label>
+                </th>
+                <th>
+                    <label>Código Postal</label>
+                </th>
+                <th>
+                    <label>Referencias</label>
+                </th>
+                <th>
+                    <label>Recibidor</label>
+                </th>
+                <th>
+                    <label>Número</label>
+                </th>
+                <th>
+                    <label>Departamento</label>
+                </th>
+                <th>
+                    <label>D. Principal</label>
+                </th>
+                <th>
+                    <label>Comunas</label>
+                </th>
+                <th>
+                    <label>Usuarios</label>
+                </th>
+                <th>
+                    <label>Opciones</label>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<div class="d-flex justify-content-end mr-5"><a href="@Url.Action("Create")" class="btn btn-success"><i class="fa fa-plus-circle"></i> Agregar</a></div>

@@ -1,0 +1,77 @@
+﻿@model Conexiones.Animales.Models.Ventas
+
+@{
+    ViewBag.Title = "Editar Venta";
+}
+
+
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <i class="fa fa-edit"></i><div class="card-header text-white bg-dark mb-3">Editar Venta</div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.id)
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Fecha</label>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Total</label>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Usuario</label>
+                            <div class="col-md-6">
+                                @Html.DropDownList("idUsuario", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idUsuario, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Descripción</label>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Metodo de pago</label>
+                            <div class="col-md-6">
+                                @Html.DropDownList("idMetodoPago", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idMetodoPago, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    <div class="col-md-6 offset-md-4">
+                        <input type="submit" value="Guardar" class="btn btn-warning" />
+                    </div>
+
+                }
+                </div>
+                <div>
+                    @Html.ActionLink("Volver", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

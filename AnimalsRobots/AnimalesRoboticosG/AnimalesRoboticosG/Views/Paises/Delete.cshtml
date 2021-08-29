@@ -1,0 +1,43 @@
+﻿@model Conexiones.Animales.Models.Paises
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <i class="fa fa-remove"></i><div class="card-header text-white bg-dark mb-3">Eliminar País</div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Nombre:</label>
+                        @Html.DisplayFor(model => model.nombre)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Eliminado:</label>
+                        @Html.DisplayFor(model => model.eliminado)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Fecha de Eliminación:</label>
+                        @Html.DisplayFor(model => model.fechaEliminacion)
+                    </div>
+                </div>
+                <div class="col-md-6 offset-md-4">
+                    <label class="justify-content-center">¿Está seguro que desea eliminar el país?</label>
+                </div>
+                
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="col-md-6 offset-md-4">
+                        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                        @Html.ActionLink("Volver", "Index")
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

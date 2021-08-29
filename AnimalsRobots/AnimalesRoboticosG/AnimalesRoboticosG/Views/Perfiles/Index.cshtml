@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Conexiones.Animales.Models.Perfiles>
+
+@{
+    ViewBag.Title = "Cuenta";
+}
+<div class="d-flex ml-5 mr-5">
+
+    <table class="table">
+        <thead class="thead-dark table-bordered">
+            <tr>
+                <th>
+                    <label>Tipo de Usuario</label>
+                </th>
+                <th>
+                    <label>Opciones</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Ver", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot class="thead-dark table-bordered">
+            <tr>
+                <th>
+                    <label>Tipo de Usuario</label>
+                </th>
+                <th>
+                    <label>Opciones</label>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<div class="d-flex justify-content-end mr-5"><a href="@Url.Action("Create")" class="btn btn-success"><i class="fa fa-plus-circle"></i> Agregar</a></div>

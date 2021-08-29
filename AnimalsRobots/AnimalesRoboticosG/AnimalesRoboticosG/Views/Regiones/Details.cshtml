@@ -1,0 +1,35 @@
+﻿@model Conexiones.Animales.Models.Regiones
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-black-50 bg-light">Detalle de la Región</div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <strong>Región:</strong>
+                        @Html.DisplayFor(model => model.nombre)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <strong>País:</strong>
+                        @Html.DisplayFor(model => model.Paises.nombre)
+                    </div>
+                </div>
+
+                <div class="col-md-6 offset-md-4">
+                    <button type="button" class="btn btn-warning btn-sm">
+                        <i class="fa fa-edit"></i>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.id })
+                    </button>
+                </div>
+                @Html.ActionLink("Volver", "Index")
+            </div>
+        </div>
+    </div>
+</div>

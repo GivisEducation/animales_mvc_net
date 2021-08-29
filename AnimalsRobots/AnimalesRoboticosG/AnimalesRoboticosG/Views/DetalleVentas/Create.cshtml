@@ -1,0 +1,65 @@
+﻿@model Conexiones.Animales.Models.DetalleVentas
+
+@{
+    ViewBag.Title = "Ingresar Detalle Venta";
+}
+
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <i class="fa fa-plus-circle"></i><div class="card-header text-white bg-dark mb-3">Agregar Detalle Venta</div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Venta</label>
+                            <div class="col-md-6">
+                                @Html.DropDownList("idVenta", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idVenta, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Producto</label>
+                            <div class="col-md-6">
+                                @Html.DropDownList("idProducto", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idProducto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Cantidad</label>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">SubTotal</label>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.subTotal, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.subTotal, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 offset-md-4">
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+                        </div>
+                    }
+                </div>
+                <div>
+                    @Html.ActionLink("Volver", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

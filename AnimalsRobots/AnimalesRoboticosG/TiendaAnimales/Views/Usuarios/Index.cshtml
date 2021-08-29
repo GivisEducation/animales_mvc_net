@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Tu cuenta";
+}
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <div class="veen">
+        <div class="login-btn splits">
+            <p>Ya tienes usuario?</p>
+            <button class="active">Iniciar Sesión</button>
+        </div>
+        <div class="rgstr-btn splits">
+            <p>¿No estas registrado?</p>
+            <button>Registrarme</button>
+        </div>
+        <div class="wrapper">
+            <form id="login" method="post" action="/Usuarios/Login" tabindex="500">
+                <h3>Hola! Inicia tu sesión</h3>
+                <div class="mail">
+                    <input type="email" name="email" required>
+                    <label>Correo electrónico</label>
+                </div>
+                <div class="passwd">
+                    <input type="password" name="clave" required>
+                    <label>Contraseña</label>
+                </div>
+                <p>¿Olvidaste tu<a href="#"> contraseña?</a></p>
+                <div class="submit">
+                    <button class="dark">Iniciar sesión</button>
+                </div>
+            </form>
+            <p class="alert-danger">@ViewBag.Mensaje</p>
+
+            <form method="post" action="/Usuarios/Registro" id="register" tabindex="502">
+                <h3>Registrarte</h3>
+                <div class="name">
+                    <input type="text" name="nombre" required>
+                    <label>Nombre</label>
+                </div>
+                <div class="mail">
+                    <input type="email" name="email" required>
+                    <label>Correo electrónico</label>
+                </div>
+                <div class="passwd">
+                    <input type="password" name="clave" placeholder="8 caracteres como mínimo" minlength="8" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="uid">
+                    <input type="password" name="reClave" placeholder="repetir contraseña" required>
+                    <label>Reingresar contraseña</label>
+                </div>
+                <div class="submit">
+                    <button class="dark">Registrarte</button>
+                </div>
+            </form>
+            <p class="alert-success">@ViewBag.Mensaje</p>
+        </div>
+    </div>
+
+
+    <style type="text/css">
+        .site-link {
+            padding: 5px 15px;
+            position: fixed;
+            z-index: 99999;
+            background: #fff;
+            box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+            right: 30px;
+            bottom: 30px;
+            border-radius: 10px;
+        }
+
+            .site-link img {
+                width: 30px;
+                height: 30px;
+            }
+    </style>

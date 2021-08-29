@@ -1,0 +1,77 @@
+﻿@model Conexiones.Animales.Models.Direcciones
+
+@{
+    ViewBag.Title = "Eliminar Dirección";
+}
+
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <i class="fa fa-remove"></i><div class="card-header text-white bg-dark mb-3">Eliminar Dirección</div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Dirección:</label>
+
+                        @Html.DisplayFor(model => model.nombre)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Código Postal:</label>
+                        @Html.DisplayFor(model => model.codigoPostal)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Referencias:</label>
+                        @Html.DisplayFor(model => model.referencias)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Recibidor:</label>
+                        @Html.DisplayFor(model => model.recibidor)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Número:</label>
+                        @Html.DisplayFor(model => model.numero)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Departamento:</label>
+                        @Html.DisplayFor(model => model.departamento)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Principal:</label>
+                        @Html.DisplayFor(model => model.principal)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Comuna:</label>
+                        @Html.DisplayFor(model => model.Comunas.nombre)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Usuario:</label>
+                        @Html.DisplayFor(model => model.Usuarios.nombre)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Eliminado:</label>
+                        @Html.DisplayFor(model => model.eliminado)
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-4 col-form-label text-md-right">Fecha de Eliminación:</label>
+                        @Html.DisplayFor(model => model.fechaEliminacion)
+                    </div>
+
+                </div>
+                <div class="col-md-6 offset-md-4">
+                    <label class="justify-content-center">¿Está seguro que desea eliminar la dirección?</label>
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="col-md-6 offset-md-4">
+                        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                        @Html.ActionLink("Volver", "Index")
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

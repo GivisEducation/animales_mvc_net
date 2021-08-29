@@ -1,0 +1,6 @@
+﻿footer {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background: linear-gradient(to bottom right, slategrey, rgba(183, 223, 182, 250));
+}
